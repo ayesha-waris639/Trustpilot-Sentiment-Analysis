@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TrustPilot AI Sentiment Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <main class="app">
+
+        <!-- Header -->
+
+        <header class="header">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    AI
+                </div>
+
+                <div>
+                    <h1>TrustPilot</h1>
+                    <span>AI Sentiment Analyzer</span>
+                </div>
+
+            </div>
+
+            <div class="model-status">
+                <span class="status-dot"></span>
+                BERT Model Online
+            </div>
+
+        </header>
+
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+            <span class="eyebrow">
+                TRANSFORMER-POWERED ANALYSIS
+            </span>
+
+            <h2>
+                Understand customer
+                <span>sentiment instantly.</span>
+            </h2>
+
+            <p>
+                Enter a customer review and let our BERT-based
+                AI classify it as Negative, Neutral, or Positive.
+            </p>
+
+        </section>
+
+
+        <!-- Main Card -->
+
+        <section class="analyzer-card">
+
+            <div class="input-header">
+
+                <div>
+                    <h3>Customer Review</h3>
+
+                    <p>
+                        Enter or paste your review below
+                    </p>
+                </div>
+
+                <span class="counter">
+                    <span id="charCount">0</span>/1000
+                </span>
+
+            </div>
+
+
+            <textarea
+                id="review"
+                maxlength="1000"
+                placeholder="Example: I really enjoyed the service. The delivery was fast and everything arrived perfectly..."
+            ></textarea>
+
+
+            <div class="quick-examples">
+
+                <span>Try an example:</span>
+
+                <button onclick="useExample('positive')">
+                    Positive
+                </button>
+
+                <button onclick="useExample('negative')">
+                    Negative
+                </button>
+
+                <button onclick="useExample('neutral')">
+                    Neutral
+                </button>
+
+            </div>
+
+
+            <div class="action-row">
+
+                <button
+                    class="clear-button"
+                    onclick="clearText()"
+                >
+                    Clear
+                </button>
+
+                <button
+                    class="analyze-button"
+                    id="analyzeBtn"
+                    onclick="analyzeSentiment()"
+                >
+                    <span>Analyze Sentiment</span>
+                    <span class="arrow">→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Loading -->
+
+        <div
+            id="loading"
+            class="loading hidden"
+        >
+            <div class="loader"></div>
+
+            <div>
+                <strong>Analyzing your review...</strong>
+                <p>BERT is processing the text</p>
+            </div>
+        </div>
+
+
+        <!-- Result -->
+
+        <section
+            id="resultCard"
+            class="result-card hidden"
+        >
+
+            <div class="result-top">
+
+                <div>
+                    <span class="result-label">
+                        AI ANALYSIS RESULT
+                    </span>
+
+                    <h3>Your review is</h3>
+                </div>
+
+                <div
+                    id="sentimentBadge"
+                    class="sentiment-badge"
+                >
+                    Positive
+                </div>
+
+            </div>
+
+
+            <div class="confidence-section">
+
+                <div class="confidence-header">
+
+                    <span>Model Confidence</span>
+
+                    <strong id="confidence">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="confidence-track">
+
+                    <div
+                        id="confidenceBar"
+                        class="confidence-bar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="probability-grid">
+
+                <div class="probability-card negative-card">
+
+                    <div class="probability-title">
+                        <span class="dot negative-dot"></span>
+                        Negative
+                    </div>
+
+                    <strong id="negative">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="probability-card neutral-card">
+
+                    <div class="probability-title">
+                        <span class="dot neutral-dot"></span>
+                        Neutral
+                    </div>
+
+                    <strong id="neutral">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="probability-card positive-card">
+
+                    <div class="probability-title">
+                        <span class="dot positive-dot"></span>
+                        Positive
+                    </div>
+
+                    <strong id="positive">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="review-preview">
+
+                <span>Your analyzed review</span>
+
+                <p id="reviewPreview"></p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+
+        <footer>
+
+            <div class="footer-line"></div>
+
+            <p>
+                Powered by
+                <strong>BERT Transformer</strong>
+                · Trustpilot Sentiment Analysis
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+</body>
+
+</html>
